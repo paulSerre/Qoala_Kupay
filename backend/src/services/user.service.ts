@@ -8,4 +8,12 @@ const create = (newUser: User) => {
     return UserDAO.create(newUser)
 }
 
-export { findAll, create }
+const findOne = (name: string) => {
+    return UserDAO.findOne({
+        where: {
+            name
+        }
+    })
+}
+
+export { findAll, create, findOne }
