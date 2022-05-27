@@ -1,10 +1,10 @@
 
 import { Express } from 'express';
-import { findAll, create } from '../controllers/user.controller';
+import { readAll, createUser } from '../controllers/user.controller';
 
 export default (app: Express) => {
 
-    app.get("/user", findAll);
+    app.get("/user", readAll);
 
-    app.post("/user", create)
+    app.post("/user", createUser)
 }

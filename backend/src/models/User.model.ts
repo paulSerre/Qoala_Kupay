@@ -1,7 +1,15 @@
 const { DataTypes } = require("sequelize");
+import { Model } from "sequelize/types";
 import {connection} from "./connection";
 
-const UserDAO = connection.define("User", {
+export interface User {
+    id?: number;
+    name: string;
+    email: string;
+    password: string;
+}
+
+const UserDAO = connection.define<Model<User>, any>("User", {
     id: {
         type: DataTypes.BIGINT,
         autoIncrement: true,
