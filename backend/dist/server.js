@@ -8,11 +8,17 @@ const commons_middleware_1 = __importDefault(require("./middlewares/commons.midd
 const user_routes_1 = __importDefault(require("./routes/user.routes"));
 const http_1 = __importDefault(require("http"));
 const connection_1 = require("./models/connection");
+const login_routes_1 = __importDefault(require("./routes/login.routes"));
+const passport_middleware_1 = require("./middlewares/passport.middleware");
+const auth_middleware_1 = require("./middlewares/auth.middleware");
 const app = (0, express_1.default)();
 const httpServer = http_1.default.createServer(app);
 connection_1.connection.sync().then(() => {
     // Apply middlewares
     (0, commons_middleware_1.default)(app);
+    (0, passport_middleware_1.sessionMiddleware)(app);
+    app.use((0, auth_middleware_1.authMiddleware)());
+    (0, login_routes_1.default)(app);
     (0, user_routes_1.default)(app);
-    httpServer.listen(8080, () => console.log(`Server running on ${process.env.API_URL}:${process.env.PORT}`));
+    httpServer.listen(8080, () => console.log(`Server running`));
 }, (err) => console.log(err));

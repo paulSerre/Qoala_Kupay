@@ -8,12 +8,16 @@ const create = (newUser: User) => {
     return UserDAO.create(newUser)
 }
 
-const findOne = (name: string) => {
+const findByEmail = (email: string) => {
     return UserDAO.findOne({
         where: {
-            name
+            email
         }
     })
 }
 
-export { findAll, create, findOne }
+const findById = (id: number) => {
+    return UserDAO.findByPk(id);
+}
+
+export { findAll, create, findByEmail, findById }

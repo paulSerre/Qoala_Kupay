@@ -1,14 +1,21 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, Request, Response, Express } from "express";
 
-const publicRoutes: Array<string> = []
+const publicRoutes: Array<string> = ["/signin"]
 
-const authenticationMiddleware = () => (req: Request, res: Response, next: NextFunction) => {
-    if(publicRoutes.includes(req.baseUrl)) {
-      next();
+const authMiddleware = () => (req: Request, res: Response, next: NextFunction) => {
+  console.log(req)
+    if(publicRoutes.includes(req.url)) {
+      console.log("Route is public.")
+      return next();
     }
 
-    if (req.isAuthenticated()) {
+    if (req.user) {
+      console.log(`User ${req.user} is authentified.`)
       return next()
     }
-    res.status(501).redirect('/login');
+
+    console.log(`Trying to access a private route.`)
+    res.status(401).send({message: "Unauthorized"});
 }
+
+export { authMiddleware };
