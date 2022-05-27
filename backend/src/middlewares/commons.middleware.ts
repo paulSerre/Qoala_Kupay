@@ -1,8 +1,9 @@
-import { Application } from "express";
-const cors = require("cors");
+import cors from "cors";
+import { Express, json } from "express";
 
-const commonMiddlewares = (app: Application) => {
+const commonMiddlewares = (app: Express) => {
     app.use(cors())
+    app.use(json())
 }
 
 export default commonMiddlewares;
