@@ -1,19 +1,17 @@
-import { DataTypes, ForeignKey, InferAttributes, InferCreationAttributes, Model } from 'sequelize';
+import { DataTypes, ForeignKey, HasManyAddAssociationMixin, HasManyAddAssociationsMixin, HasManyCountAssociationsMixin, HasManyCreateAssociationMixin, HasManyGetAssociationsMixin, HasManyHasAssociationMixin, HasManyHasAssociationsMixin, HasManyRemoveAssociationMixin, HasManyRemoveAssociationsMixin, HasManySetAssociationsMixin, InferAttributes, InferCreationAttributes, Model, NonAttribute } from 'sequelize';
 import {connection} from "./connection";
+import ProductDAO from './Product.model';
 
 const config = {
     tableName: 'Transaction',
     sequelize: connection,
   };
 
-export interface Transaction {
-    transactionId?: number;
-    date: Date;
-}
 class TransactionDAO extends Model<InferAttributes<TransactionDAO>, InferCreationAttributes<TransactionDAO>> {
-    public transactionId!: number;
-    public date!: Date
-    public userId!: ForeignKey<number>
+    declare transactionId?: number;
+    declare date: Date
+    declare userId?: ForeignKey<number>
+    declare productId?: ForeignKey<number>
 }
 
 TransactionDAO.init(
@@ -27,7 +25,6 @@ TransactionDAO.init(
         date: {
             type: DataTypes.DATE,
             allowNull: false,
-            unique: true
         },
     },
     config

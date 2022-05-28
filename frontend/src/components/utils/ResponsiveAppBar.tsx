@@ -21,11 +21,11 @@ import User from '../../models/user';
 const pages: Array<Page> = [
     {
         label: 'Products',
-        path: "/home/products"
+        path: "/products"
     },
     {
         label: "Wallet",
-        path: "/home/wallet"
+        path: "/wallet"
     }
 ];
 

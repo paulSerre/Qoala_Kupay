@@ -4,4 +4,8 @@ const findAll = () => {
     return ProductDAO.findAll()
 }
 
-export { findAll }
+const findProductById = (productId: number) => {
+    return ProductDAO.findByPk(productId)
+}
+
+export { findAll, findProductById }

@@ -1,4 +1,4 @@
-import { findTransactionsByUserId } from "../services/transaction.service";
+import { buyProduct, findTransactionsByUserId } from "../services/transaction.service";
 import { Request, Response } from "express";
 
 const getTransactionsForUser = (req: Request, res: Response) => {
@@ -14,4 +14,11 @@ const getTransactionsForUser = (req: Request, res: Response) => {
     )
 };
 
-export { getTransactionsForUser }
+const buy = async (req: Request, res: Response) => {
+    //@ts-ignore
+    const transaction = await buyProduct(req.user.id, req.params.productId);
+    if (!transaction) return res.status(400).send({message: "Error when trying to buy product"})
+    return res.status(200).send(transaction);
+}
+
+export { getTransactionsForUser, buy }

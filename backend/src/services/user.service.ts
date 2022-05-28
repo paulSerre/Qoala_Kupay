@@ -1,5 +1,6 @@
 import UserDAO, { User } from "../models/User.model"
 import { cipher } from "../utils/aes256"
+import { findProductById } from "./product.service"
 
 const findAll = () => {
     return UserDAO.findAll()
@@ -24,6 +25,12 @@ const findByEmail = (email: string) => {
 
 const findById = (id: number) => {
     return UserDAO.findByPk(id);
+}
+
+const buyProduct = async (productId: number) => {
+    const product = await findProductById(productId);
+    if (!product) return null;
+    
 }
 
 export { findAll, create, findByEmail, findById }

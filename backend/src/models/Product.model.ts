@@ -13,7 +13,7 @@ export interface Product {
 }
 
 class ProductDAO extends Model<InferAttributes<ProductDAO>, InferCreationAttributes<ProductDAO>> {
-    public productId!: number;
+    public productId?: number;
     public name!: string;
     public price!: number;
 }

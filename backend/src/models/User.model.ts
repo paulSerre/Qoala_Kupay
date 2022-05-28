@@ -14,7 +14,7 @@ export interface User {
     card: number;
 }
 class UserDAO extends Model<InferAttributes<UserDAO>, InferCreationAttributes<UserDAO>> {
-    public userId!: number;
+    public userId?: number;
     public name!: string;
     public email!: string;
     public password!: string;

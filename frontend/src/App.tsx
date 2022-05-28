@@ -1,6 +1,6 @@
 import './App.css';
 import SignIn from './components/login/SigninComponent';
-import { Route, Routes, useNavigate } from 'react-router-dom';
+import { Outlet, Route, Routes, useNavigate } from 'react-router-dom';
 import SignUp from './components/login/SignupComponent';
 import React from 'react';
 import axios from 'axios';
@@ -24,7 +24,7 @@ function App() {
         }).then(({data: user}) => {
           setLoggedUser(user);
           setLoggedIn(true);
-          navigate("/home");
+          navigate("/");
         }
         ).catch(() => {
           setLoggedUser(null);
@@ -40,7 +40,7 @@ function App() {
       {
         (loggedIn && loggedUser) ? 
         <>
-          <Route path="/home" element={<ResponsiveAppBar user={loggedUser}/>}>
+          <Route path="/" element={<><ResponsiveAppBar user={loggedUser}/> <Outlet/></>}>
             <Route path="products" element={<ProductsViewComponent/>}/>
             <Route path="wallet" element={<div>Wallet</div>}/>
           </Route>

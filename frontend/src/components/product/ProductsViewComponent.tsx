@@ -37,26 +37,28 @@ const ProductsViewComponent = () => {
     )
 
     return (
-        <List >
-        {products.map((product: Product) => 
-            <ListItem
-                secondaryAction={
-                <IconButton edge="end" aria-label="buy">
-                    <ShoppingCartIcon />
-                </IconButton>
-                }
-            >
-                <ListItemAvatar>
-                <Avatar>
-                    <FolderIcon />
-                </Avatar>
-                </ListItemAvatar>
-                <ListItemText
-                    primary={product.name}
-                    secondary={'Secondary text'}
-                />
-            </ListItem>)}
-      </List>
+        <>
+            <List >
+                {products.map((product: Product) => 
+                    <ListItem
+                        secondaryAction={
+                        <IconButton edge="end" aria-label="buy">
+                            <ShoppingCartIcon />
+                        </IconButton>
+                        }
+                    >
+                        <ListItemAvatar>
+                        <Avatar>
+                            <FolderIcon />
+                        </Avatar>
+                        </ListItemAvatar>
+                        <ListItemText
+                            primary={product.name}
+                            secondary={'Secondary text'}
+                        />
+                    </ListItem>)}
+            </List>
+        </>
     )
 }
 

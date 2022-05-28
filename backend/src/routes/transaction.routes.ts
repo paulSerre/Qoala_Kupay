@@ -1,8 +1,10 @@
 
 import { Express } from 'express';
-import { getTransactionsForUser } from '../controllers/transaction.controller';
+import { buy, getTransactionsForUser } from '../controllers/transaction.controller';
 
 export default (app: Express) => {
 
     app.get("/transactions", getTransactionsForUser);
+
+    app.post("/transactions/:id", buy)
 }

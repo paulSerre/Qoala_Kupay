@@ -53,7 +53,7 @@ export default function SignIn(props: Props) {
         ({data: user}) => {
             props.setLoggedIn(true);
             props.setLoggedUser(user);
-            navigate("/home");
+            navigate("/");
         },
         (err) => console.log(err)
     )
