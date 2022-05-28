@@ -2,7 +2,10 @@ import cors from "cors";
 import { Express, json } from "express";
 
 const commonMiddlewares = (app: Express) => {
-    app.use(cors())
+    app.use(cors({
+        credentials: true,
+        origin: true,
+    }))
     app.use(json())
 }
 

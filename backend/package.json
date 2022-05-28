@@ -14,6 +14,7 @@
     "@types/passport": "^1.0.7",
     "@types/passport-local": "^1.0.34",
     "@types/sequelize": "^4.28.13",
+    "aes256": "^1.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
