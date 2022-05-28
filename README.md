@@ -16,7 +16,7 @@ Authentification is one using passportjs. It's a simple session strategy stored 
 
 Sequelize ORM has been used to generate database model.
 
-### Frontend
+## Frontend
 
 Command to start it:
 `npm start`
