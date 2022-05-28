@@ -6,13 +6,23 @@ import React from 'react';
 import axios from 'axios';
 import ResponsiveAppBar from './components/utils/ResponsiveAppBar';
 import User from './models/user';
-import ProductsViewComponent from './components/product/ProductsViewComponent';
+import ProductsViewComponent from './components/views/ProductsViewComponent';
+import WalletViewComponent from './components/views/WalletViewComponent';
 
 function App() {
 
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [loggedUser, setLoggedUser] = React.useState<User | null>(null);
   let navigate = useNavigate();
+
+  const goTo = React.useCallback(
+    (loggedUser: User | null, loggedIn: boolean, path: string) => {
+      setLoggedUser(loggedUser);
+      setLoggedIn(loggedIn);
+      navigate(path);
+    },
+    []
+  )
 
   React.useEffect(
     () => {
@@ -22,14 +32,14 @@ function App() {
             headers: {'Content-Type': 'application/json' },
             withCredentials: true
         }).then(({data: user}) => {
-          setLoggedUser(user);
-          setLoggedIn(true);
-          navigate("/");
-        }
-        ).catch(() => {
-          setLoggedUser(null);
-          setLoggedIn(false);
-          navigate("/signin");
+          console.log(user)
+          if (!user) {
+            goTo(null, false, "/signin");
+          } else {
+            goTo(user, true, "/");
+          }
+        }).catch(() => {
+          goTo(null, false, "/signin");
         })
     },
     []
@@ -42,7 +52,7 @@ function App() {
         <>
           <Route path="/" element={<><ResponsiveAppBar user={loggedUser}/> <Outlet/></>}>
             <Route path="products" element={<ProductsViewComponent/>}/>
-            <Route path="wallet" element={<div>Wallet</div>}/>
+            <Route path="wallet" element={<WalletViewComponent/>}/>
           </Route>
         </> : (
         <>

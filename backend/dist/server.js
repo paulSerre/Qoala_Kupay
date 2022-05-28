@@ -12,6 +12,7 @@ const passport_middleware_1 = require("./middlewares/passport.middleware");
 const auth_middleware_1 = require("./middlewares/auth.middleware");
 const product_routes_1 = __importDefault(require("./routes/product.routes"));
 const association_1 = require("./models/association");
+const transaction_routes_1 = __importDefault(require("./routes/transaction.routes"));
 const app = (0, express_1.default)();
 const httpServer = http_1.default.createServer(app);
 association_1.sequelize.then(() => {
@@ -22,5 +23,6 @@ association_1.sequelize.then(() => {
     (0, login_routes_1.default)(app);
     (0, user_routes_1.default)(app);
     (0, product_routes_1.default)(app);
+    (0, transaction_routes_1.default)(app);
     httpServer.listen(8080, () => console.log(`Server running`));
 }, (err) => console.log(err));

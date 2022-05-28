@@ -47,7 +47,7 @@ const ResponsiveAppBar = (props: Props) => {
   let navigate = useNavigate();
 
   React.useEffect(
-    () => navigate(pages[0].path),
+    () => navigate(`${pages[0].path}`),
     []
   )
 

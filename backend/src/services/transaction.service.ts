@@ -1,12 +1,11 @@
-import ProductDAO from "../models/Product.model"
 import TransactionDAO from "../models/Transaction.model"
-import UserDAO from "../models/User.model"
 
 const findTransactionsByUserId = (id: number) => {
     return TransactionDAO.findAll({
         where: {
             userId: id
-        }
+        },
+        include: ["product"]
     })
 }
 
@@ -16,7 +15,7 @@ const buyProduct = (userId: number, productId: number) => {
         productId,
         userId
     }, {
-        include: [ProductDAO, UserDAO]
+        include: ["product", "user"]
     })
 }
 

@@ -29,6 +29,22 @@ const ProductsViewComponent = () => {
         []
     )
 
+    const buyProduct = (productId: number) => {
+        axios.post(
+            `http://localhost:8080/transactions/${productId}`,
+            {
+
+            },
+            { 
+                headers: {'Content-Type': 'application/json' },
+                withCredentials: true
+            }
+        ).then(
+            (res) => console.log(res),
+            (err) => console.log(err)
+        )
+    }
+
     if (error) return (
         <>
             An error has occurred while trying to get products.
@@ -39,10 +55,11 @@ const ProductsViewComponent = () => {
     return (
         <>
             <List >
-                {products.map((product: Product) => 
+                {products.map((product: Product, idx: number) => 
                     <ListItem
+                        key={idx}
                         secondaryAction={
-                        <IconButton edge="end" aria-label="buy">
+                        <IconButton edge="end" aria-label="buy" onClick={() => buyProduct(product.productId)}>
                             <ShoppingCartIcon />
                         </IconButton>
                         }

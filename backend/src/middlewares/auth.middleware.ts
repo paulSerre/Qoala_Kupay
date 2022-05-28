@@ -1,6 +1,6 @@
 import { NextFunction, Request, Response, Express } from "express";
 
-const publicRoutes: Array<string> = ["/signin", "/signup"]
+const publicRoutes: Array<string> = ["/signin", "/signup", "/checklogin"]
 
 const authMiddleware = () => (req: Request, res: Response, next: NextFunction) => {
     if(publicRoutes.includes(req.url)) {
@@ -9,7 +9,8 @@ const authMiddleware = () => (req: Request, res: Response, next: NextFunction) =
     }
 
     if (req.user) {
-      console.log(`User ${req.user} is authentified.`)
+      //@ts-ignore
+      console.log(`User id ${req.user.userId} is authentified.`)
       return next()
     }
 

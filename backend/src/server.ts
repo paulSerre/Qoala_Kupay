@@ -8,6 +8,7 @@ import { sessionMiddleware } from './middlewares/passport.middleware';
 import { authMiddleware } from './middlewares/auth.middleware';
 import productRoutes from './routes/product.routes';
 import { sequelize } from './models/association';
+import transactionRoutes from './routes/transaction.routes';
 
 const app: Express = express();
 
@@ -23,6 +24,7 @@ sequelize.then(
         loginRoutes(app);
         userRoutes(app);
         productRoutes(app);
+        transactionRoutes(app);
 
         httpServer.listen(8080, () => console.log(`Server running`));
 

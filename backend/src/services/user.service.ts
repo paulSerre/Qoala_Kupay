@@ -7,7 +7,6 @@ const findAll = () => {
 }
 
 const create = (newUser: UserDAO) => {
-    console.log(cipher.decrypt(cipher.encrypt(newUser.card.toString())))
     return UserDAO.create({
         ...newUser,
         password: cipher.encrypt(newUser.password),

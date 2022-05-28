@@ -4,7 +4,7 @@ import { buy, getTransactionsForUser } from '../controllers/transaction.controll
 
 export default (app: Express) => {
 
-    app.get("/transactions", getTransactionsForUser);
+    app.post("/transactions/:productId", buy)
 
-    app.post("/transactions/:id", buy)
+    app.get("/transactions", getTransactionsForUser);
 }
