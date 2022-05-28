@@ -11,6 +11,10 @@ Command to start it:
 ### Authentifcation
 
 Authentification is one using passportjs. It's a simple session strategy stored in cookies, ensuring that email exists and password is correct. A local signin strategy has been implemented.
+A default user has been created:
+
+email: paul27000@gmail.com
+password: test123456
 
 ### ORM
 
